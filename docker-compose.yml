@@ -1,0 +1,7 @@
+version: '3'
+services:
+  go_ddd:
+    build: go_ddd
+    volumes:
+      - ./go_ddd:/go/go_ddd
+    tty: true
