@@ -1,20 +1,20 @@
 package ch02
 
 import (
-    "errors"
+	"errors"
 )
 
-type UserID struct{
+type UserID struct {
 	value *string
 }
 
-func NewUserID(value *string) (*UserID, error){
+func NewUserID(value *string) (*UserID, error) {
 
-	if(value == nil){
+	if value == nil {
 		return nil, errors.New("ユーザIDが入力されていません")
 	}
 
-	userID := &UserID{ value: value }
+	userID := &UserID{value: value}
 
 	return userID, nil
 }
