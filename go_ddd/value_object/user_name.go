@@ -1,4 +1,4 @@
-package ch02
+package value_object
 
 import (
 	"errors"
