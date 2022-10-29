@@ -18,3 +18,7 @@ func NewUserID(value *string) (*UserID, error) {
 
 	return userID, nil
 }
+
+func (u *UserID) ID() string {
+	return *u.value
+}
