@@ -2,18 +2,14 @@ package service
 
 import (
 	"go_ddd/entity"
+	. "go_ddd/interfaces/repository"
 )
 
-type userRepositoryI interface {
-	Exists(name string) bool
-	Save(user *entity.User)
-}
-
 type UserService struct {
-	userRepository userRepositoryI
+	userRepository UserRepositoryI
 }
 
-func NewUserService(userRepository userRepositoryI) *UserService {
+func NewUserService(userRepository UserRepositoryI) *UserService {
 	return &UserService{
 		userRepository: userRepository,
 	}

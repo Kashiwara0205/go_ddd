@@ -3,20 +3,16 @@ package service
 import (
 	"errors"
 	"go_ddd/entity"
+	. "go_ddd/interfaces/repository"
 	"go_ddd/service"
 	"go_ddd/value_object"
 )
 
-type userRepositoryI interface {
-	Exists(name string) bool
-	Save(user *entity.User)
-}
-
 type UserUsecase struct {
-	userRepository userRepositoryI
+	userRepository UserRepositoryI
 }
 
-func NewUserUsecase(userRepository userRepositoryI) *UserUsecase {
+func NewUserUsecase(userRepository UserRepositoryI) *UserUsecase {
 	return &UserUsecase{
 		userRepository: userRepository,
 	}
