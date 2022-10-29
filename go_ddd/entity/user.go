@@ -26,6 +26,10 @@ func NewUser(id *value_object.UserID, name *value_object.UserName) (*User, error
 	return user, nil
 }
 
+func (user *User) Name() string {
+	return user.name.Value()
+}
+
 func (user *User) Equals(other *User) bool {
 	if other == nil {
 		return false
