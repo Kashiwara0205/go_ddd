@@ -6,6 +6,7 @@ import (
 
 type userRepositoryI interface {
 	Find(name string) bool
+	Save(user *entity.User)
 }
 
 type UserService struct {
@@ -18,6 +19,6 @@ func NewUserService(userRepository userRepositoryI) *UserService {
 	}
 }
 
-func (u *UserService) Exists(user entity.User) bool {
+func (u *UserService) Exists(user *entity.User) bool {
 	return u.userRepository.Find(user.Name())
 }

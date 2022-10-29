@@ -10,17 +10,13 @@ type User struct {
 	name *value_object.UserName
 }
 
-func NewUser(id *value_object.UserID, name *value_object.UserName) (*User, error) {
-	if id == nil {
-		return nil, errors.New("ユーザIDが入力されていません")
-	}
+func NewUser(name *value_object.UserName) (*User, error) {
 
 	if name == nil {
 		return nil, errors.New("ユーザ名が入力されていません")
 	}
 
 	user := &User{
-		id:   id,
 		name: name,
 	}
 	return user, nil
@@ -36,6 +32,16 @@ func (user *User) Equals(other *User) bool {
 	}
 
 	return user.id.Value() == other.id.Value()
+}
+
+func (user *User) ChangeUserID(id *value_object.UserID) error {
+	if id == nil {
+		return errors.New("ユーザIDが入力されていません")
+	}
+
+	user.id = id
+
+	return nil
 }
 
 func (user *User) ChangeUserName(name *value_object.UserName) error {

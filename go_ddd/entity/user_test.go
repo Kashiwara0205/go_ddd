@@ -6,43 +6,31 @@ import (
 )
 
 func TestUserUserIDIsNil(t *testing.T) {
-	inputUserID := "ID1"
-	userID, _ := value_object.NewUserID(&inputUserID)
-
-	_, err := NewUser(userID, nil)
+	_, err := NewUser(nil)
 
 	if err.Error() != "ユーザ名が入力されていません" {
 		t.Errorf("意図していないエラーメッセージ: %s", err.Error())
 	}
 }
 
-func TestUserNameIsNil(t *testing.T) {
-	inputName := "name"
-	userName, _ := value_object.NewUserName(&inputName)
-
-	_, err := NewUser(nil, userName)
-
-	if err.Error() != "ユーザIDが入力されていません" {
-		t.Errorf("意図していないエラーメッセージ: %s", err.Error())
-	}
-}
-
 func TestEquals(t *testing.T) {
-	inputUserID := "ID1"
-	userID, _ := value_object.NewUserID(&inputUserID)
-
 	inputName := "name"
 	userName, _ := value_object.NewUserName(&inputName)
 
-	user, _ := NewUser(userID, userName)
+	user, _ := NewUser(userName)
 
-	inputOtherUserID := "ID1"
-	otherUserID, _ := value_object.NewUserID(&inputOtherUserID)
+	inputID := "ID1"
+	userID, _ := value_object.NewUserID(&inputID)
+	user.ChangeUserID(userID)
 
-	inputOtherName := "name2"
+	inputOtherName := "name"
 	otherUserName, _ := value_object.NewUserName(&inputOtherName)
 
-	otherUser, _ := NewUser(otherUserID, otherUserName)
+	otherUser, _ := NewUser(otherUserName)
+
+	inputOtherID := "ID1"
+	otherUserID, _ := value_object.NewUserID(&inputOtherID)
+	otherUser.ChangeUserID(otherUserID)
 
 	if !user.Equals(otherUser) {
 		t.Errorf("ユーザAとユーザBは等しい: %v", user.Equals(otherUser))
@@ -50,21 +38,24 @@ func TestEquals(t *testing.T) {
 }
 
 func TestEqualsWhenDiffrentID(t *testing.T) {
-	inputUserID := "ID1"
-	userID, _ := value_object.NewUserID(&inputUserID)
 
 	inputName := "name"
 	userName, _ := value_object.NewUserName(&inputName)
 
-	user, _ := NewUser(userID, userName)
+	user, _ := NewUser(userName)
 
-	inputOtherUserID := "ID2"
-	otherUserID, _ := value_object.NewUserID(&inputOtherUserID)
+	inputID := "ID1"
+	userID, _ := value_object.NewUserID(&inputID)
+	user.ChangeUserID(userID)
 
 	inputOtherName := "name2"
 	otherUserName, _ := value_object.NewUserName(&inputOtherName)
 
-	otherUser, _ := NewUser(otherUserID, otherUserName)
+	otherUser, _ := NewUser(otherUserName)
+
+	inputOtherID := "ID2"
+	otherUserID, _ := value_object.NewUserID(&inputOtherID)
+	otherUser.ChangeUserID(otherUserID)
 
 	if user.Equals(otherUser) {
 		t.Errorf("ユーザAとユーザBは等しくない: %v", user.Equals(otherUser))
@@ -72,13 +63,11 @@ func TestEqualsWhenDiffrentID(t *testing.T) {
 }
 
 func TestEqualsWheOtherUserIsNil(t *testing.T) {
-	inputUserID := "ID1"
-	userID, _ := value_object.NewUserID(&inputUserID)
 
 	inputName := "name"
 	userName, _ := value_object.NewUserName(&inputName)
 
-	user, _ := NewUser(userID, userName)
+	user, _ := NewUser(userName)
 
 	if user.Equals(nil) {
 		t.Errorf("ユーザBは存在しないのでFalseになる")
@@ -86,13 +75,11 @@ func TestEqualsWheOtherUserIsNil(t *testing.T) {
 }
 
 func TestChangeUserName(t *testing.T) {
-	inputUserID := "ID1"
-	userID, _ := value_object.NewUserID(&inputUserID)
 
 	inputName := "name"
 	userName, _ := value_object.NewUserName(&inputName)
 
-	user, _ := NewUser(userID, userName)
+	user, _ := NewUser(userName)
 
 	changeName := "changeName"
 	changeUserName, _ := value_object.NewUserName(&changeName)
@@ -105,13 +92,10 @@ func TestChangeUserName(t *testing.T) {
 }
 
 func TestChangeUserNameWhenNameIsNil(t *testing.T) {
-	inputUserID := "ID1"
-	userID, _ := value_object.NewUserID(&inputUserID)
-
 	inputName := "name"
 	userName, _ := value_object.NewUserName(&inputName)
 
-	user, _ := NewUser(userID, userName)
+	user, _ := NewUser(userName)
 
 	err := user.ChangeUserName(nil)
 
