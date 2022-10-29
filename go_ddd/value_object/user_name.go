@@ -24,3 +24,7 @@ func NewUserName(value *string) (*UserName, error) {
 
 	return userName, nil
 }
+
+func (u *UserName) Value() string {
+	return *u.value
+}

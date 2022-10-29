@@ -31,5 +31,15 @@ func (user *User) Equals(other *User) bool {
 		return false
 	}
 
-	return user.id.ID() == other.id.ID()
+	return user.id.Value() == other.id.Value()
+}
+
+func (user *User) ChangeUserName(name *value_object.UserName) error {
+	if name == nil {
+		return errors.New("ユーザ名が入力されていません")
+	}
+
+	user.name = name
+
+	return nil
 }
