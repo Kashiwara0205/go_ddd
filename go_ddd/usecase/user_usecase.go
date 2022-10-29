@@ -8,7 +8,7 @@ import (
 )
 
 type userRepositoryI interface {
-	Find(name string) bool
+	Exists(name string) bool
 	Save(user *entity.User)
 }
 
