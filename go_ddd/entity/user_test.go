@@ -103,3 +103,19 @@ func TestChangeUserName(t *testing.T) {
 		t.Errorf("名前が変更されていない")
 	}
 }
+
+func TestChangeUserNameWhenNameIsNil(t *testing.T) {
+	inputUserID := "ID1"
+	userID, _ := value_object.NewUserID(&inputUserID)
+
+	inputName := "name"
+	userName, _ := value_object.NewUserName(&inputName)
+
+	user, _ := NewUser(userID, userName)
+
+	err := user.ChangeUserName(nil)
+
+	if err.Error() != "ユーザ名が入力されていません" {
+		t.Errorf("意図していないエラーメッセージ: %s", err.Error())
+	}
+}
