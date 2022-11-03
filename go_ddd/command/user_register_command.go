@@ -4,7 +4,7 @@ type UserRegisterCommand struct {
 	name *string
 }
 
-func CreateUserRegisterCommand(name *string) *UserRegisterCommand {
+func NewUserRegisterCommand(name *string) *UserRegisterCommand {
 	command := UserRegisterCommand{
 		name: name,
 	}

@@ -10,7 +10,7 @@ func TestHandle(t *testing.T) {
 	mock := UserRepositoryMock{}
 	usecase := NewUserDeleteUsecase(&mock)
 	id := "id1"
-	command := CreateUserDeleteCommand(&id)
+	command := NewUserDeleteCommand(&id)
 	result := usecase.Handle(command)
 
 	if result != nil {

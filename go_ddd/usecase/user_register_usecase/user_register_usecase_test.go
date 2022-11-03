@@ -10,7 +10,7 @@ func TestHandle(t *testing.T) {
 	mock := UserRepositoryMock{}
 	usecase := NewUserRegisterUsecase(&mock)
 	userName := "kashiwara"
-	command := CreateUserRegisterCommand(&userName)
+	command := NewUserRegisterCommand(&userName)
 	result := usecase.Handle(command)
 
 	if result != nil {

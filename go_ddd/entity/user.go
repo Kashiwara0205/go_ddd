@@ -23,8 +23,34 @@ func NewUser(name *value_object.UserName) (*User, error) {
 	return user, nil
 }
 
-func (user *User) Name() string {
-	return user.name.Value()
+func (user *User) ID() *string {
+	if user.id == nil {
+		return nil
+	}
+
+	userID := user.id.Value()
+
+	return &userID
+}
+
+func (user *User) Name() *string {
+	if user.name == nil {
+		return nil
+	}
+
+	name := user.name.Value()
+
+	return &name
+}
+
+func (user *User) MailAddress() *string {
+	if user.mailAddress == nil {
+		return nil
+	}
+
+	mailAddress := user.mailAddress.Value()
+
+	return &mailAddress
 }
 
 func (user *User) Equals(other *User) bool {

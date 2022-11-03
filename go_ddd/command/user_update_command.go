@@ -6,7 +6,7 @@ type UserUpdateCommand struct {
 	mailAddress *string
 }
 
-func CreateUserUpdateCommand(id *string) *UserUpdateCommand {
+func NewUserUpdateCommand(id *string) *UserUpdateCommand {
 	command := UserUpdateCommand{
 		id: id,
 	}

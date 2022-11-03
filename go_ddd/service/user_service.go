@@ -16,5 +16,12 @@ func NewUserService(userRepository UserRepositoryI) *UserService {
 }
 
 func (u *UserService) Exists(user *entity.User) bool {
-	return u.userRepository.Exists(user.Name())
+
+	name := user.Name()
+
+	if nil == user.Name() {
+		return false
+	}
+
+	return u.userRepository.Exists(*name)
 }

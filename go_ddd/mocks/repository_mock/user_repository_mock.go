@@ -19,6 +19,10 @@ func (u *UserRepositoryMock) Find(userID *value_object.UserID) *entity.User {
 
 	user, _ := entity.NewUser(userName)
 
+	inputUserID := "1"
+	mockUserID, _ := value_object.NewUserID(&inputUserID)
+	user.ChangeUserID(mockUserID)
+
 	return user
 }
 

@@ -4,7 +4,7 @@ type UserDeleteCommand struct {
 	id *string
 }
 
-func CreateUserDeleteCommand(id *string) *UserDeleteCommand {
+func NewUserDeleteCommand(id *string) *UserDeleteCommand {
 	command := UserDeleteCommand{
 		id: id,
 	}

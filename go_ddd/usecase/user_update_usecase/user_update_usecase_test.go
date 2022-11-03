@@ -10,7 +10,7 @@ func TestHandle(t *testing.T) {
 	mock := UserRepositoryMock{}
 	usecase := NewUserUpdateUsecase(&mock)
 	id := "id1"
-	command := CreateUserUpdateCommand(&id)
+	command := NewUserUpdateCommand(&id)
 
 	newUserName := "newName"
 	command.SetName(&newUserName)
