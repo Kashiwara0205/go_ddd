@@ -5,21 +5,23 @@ import (
 	. "go_ddd/command"
 	"go_ddd/entity"
 	. "go_ddd/interfaces/repository"
-	"go_ddd/service"
+	. "go_ddd/service"
 	"go_ddd/value_object"
 )
 
 type UserRegisterUsecase struct {
 	userRepository UserRepositoryI
+	userService    *UserService
 }
 
 func NewUserRegisterUsecase(userRepository UserRepositoryI) *UserRegisterUsecase {
 	return &UserRegisterUsecase{
 		userRepository: userRepository,
+		userService:    NewUserService(userRepository),
 	}
 }
 
-func (u *UserRegisterUsecase) Handle(command UserRegisterCommand) error {
+func (u *UserRegisterUsecase) Handle(command *UserRegisterCommand) error {
 
 	userNameValueObject, userNameErr := value_object.NewUserName(command.Name())
 
@@ -33,9 +35,7 @@ func (u *UserRegisterUsecase) Handle(command UserRegisterCommand) error {
 		return userEntityErr
 	}
 
-	userService := service.NewUserService(u.userRepository)
-
-	if userService.Exists(user) {
+	if u.userService.Exists(user) {
 		return errors.New("このユーザ名は既に存在します")
 	}
 

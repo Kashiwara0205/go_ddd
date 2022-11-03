@@ -4,14 +4,14 @@ type UserRegisterCommand struct {
 	name *string
 }
 
-func CreateUserRegisterCommand(name *string) UserRegisterCommand {
+func CreateUserRegisterCommand(name *string) *UserRegisterCommand {
 	command := UserRegisterCommand{
 		name: name,
 	}
 
-	return command
+	return &command
 }
 
-func (u UserRegisterCommand) Name() *string {
+func (u *UserRegisterCommand) Name() *string {
 	return u.name
 }

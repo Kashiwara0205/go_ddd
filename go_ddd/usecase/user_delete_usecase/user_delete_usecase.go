@@ -17,7 +17,7 @@ func NewUserDeleteUsecase(userRepository UserRepositoryI) *UserDeleteUsecase {
 	}
 }
 
-func (u *UserDeleteUsecase) Handle(command UserDeleteCommand) error {
+func (u *UserDeleteUsecase) Handle(command *UserDeleteCommand) error {
 	userID, userIDErr := NewUserID(command.ID())
 
 	if userIDErr != nil {

@@ -6,8 +6,9 @@ import (
 )
 
 type User struct {
-	id   *value_object.UserID
-	name *value_object.UserName
+	id          *value_object.UserID
+	name        *value_object.UserName
+	mailAddress *value_object.MailAddress
 }
 
 func NewUser(name *value_object.UserName) (*User, error) {
@@ -50,6 +51,16 @@ func (user *User) ChangeUserName(name *value_object.UserName) error {
 	}
 
 	user.name = name
+
+	return nil
+}
+
+func (user *User) ChangeMailAddress(mailAddress *value_object.MailAddress) error {
+	if mailAddress == nil {
+		return errors.New("メールが入力されていません")
+	}
+
+	user.mailAddress = mailAddress
 
 	return nil
 }
