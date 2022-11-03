@@ -1,6 +1,7 @@
 package usecase
 
 import (
+	. "go_ddd/command"
 	"go_ddd/entity"
 	"testing"
 )
@@ -13,11 +14,12 @@ func (u *UserRepositoryMock) Exists(name string) bool {
 
 func (u *UserRepositoryMock) Save(user *entity.User) {}
 
-func TestCreateUser(t *testing.T) {
+func TestHandle(t *testing.T) {
 	mock := UserRepositoryMock{}
-	usecase := NewUserUsecase(&mock)
+	usecase := NewUserRegisterUsecase(&mock)
 	userName := "kashiwara"
-	result := usecase.CreateUser(&userName)
+	command := CreateUserRegisterCommand(&userName)
+	result := usecase.Handle(command)
 
 	if result != nil {
 		t.Errorf("ユーザーは正常に作成さています")

@@ -2,25 +2,26 @@ package usecase
 
 import (
 	"errors"
+	. "go_ddd/command"
 	"go_ddd/entity"
 	. "go_ddd/interfaces/repository"
 	"go_ddd/service"
 	"go_ddd/value_object"
 )
 
-type UserUsecase struct {
+type UserRegisterUsecase struct {
 	userRepository UserRepositoryI
 }
 
-func NewUserUsecase(userRepository UserRepositoryI) *UserUsecase {
-	return &UserUsecase{
+func NewUserRegisterUsecase(userRepository UserRepositoryI) *UserRegisterUsecase {
+	return &UserRegisterUsecase{
 		userRepository: userRepository,
 	}
 }
 
-func (u *UserUsecase) CreateUser(userName *string) error {
+func (u *UserRegisterUsecase) Handle(command UserRegisterCommand) error {
 
-	userNameValueObject, userNameErr := value_object.NewUserName(userName)
+	userNameValueObject, userNameErr := value_object.NewUserName(command.Name())
 
 	if userNameErr != nil {
 		return userNameErr
