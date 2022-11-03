@@ -2,17 +2,10 @@ package service
 
 import (
 	"go_ddd/entity"
+	. "go_ddd/mocks/repository_mock"
 	"go_ddd/value_object"
 	"testing"
 )
-
-type UserRepositoryMock struct{}
-
-func (u *UserRepositoryMock) Exists(name string) bool {
-	return name == "name"
-}
-
-func (u *UserRepositoryMock) Save(user *entity.User) {}
 
 func TestExists(t *testing.T) {
 	mock := UserRepositoryMock{}

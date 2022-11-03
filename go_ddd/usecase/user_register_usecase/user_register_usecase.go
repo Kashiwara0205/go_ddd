@@ -1,4 +1,4 @@
-package usecase
+package user_register_usecase
 
 import (
 	"errors"

@@ -1,18 +1,10 @@
-package usecase
+package user_register_usecase
 
 import (
 	. "go_ddd/command"
-	"go_ddd/entity"
+	. "go_ddd/mocks/repository_mock"
 	"testing"
 )
-
-type UserRepositoryMock struct{}
-
-func (u *UserRepositoryMock) Exists(name string) bool {
-	return name == "name"
-}
-
-func (u *UserRepositoryMock) Save(user *entity.User) {}
 
 func TestHandle(t *testing.T) {
 	mock := UserRepositoryMock{}
